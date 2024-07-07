@@ -72,3 +72,8 @@ def add_review(request, id):
         Review.save(review)
 
     return HttpResponseRedirect(reverse('details', args=(id,)))
+
+def delete_restaurant(request, id):
+    restaurant = get_object_or_404(Restaurant, pk=id)
+    restaurant.delete()
+    return HttpResponseRedirect(reverse('index'))
