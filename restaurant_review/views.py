@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.cache import cache_page
+from .forms import RestaurantForm
+
 
 from restaurant_review.models import Restaurant, Review
 
@@ -83,17 +85,12 @@ def delete_restaurant(request, id):
 def update_restaurant(request, id):
     restaurant = get_object_or_404(Restaurant, pk=id)
     if request.method == 'POST':
-        try:
-            restaurant.name = request.POST['restaurant_name']
-            restaurant.street_address = request.POST['street_address']
-            restaurant.description = request.POST['description']
-            restaurant.save()
+        form = RestaurantForm(request.POST, instance=restaurant)
+        if form.is_valid():
+            form.save()
             return HttpResponseRedirect(reverse('details', args=(restaurant.id,)))
-        except KeyError:
-            # Redisplay the form
-            return render(request, 'restaurant_review/update_restaurant.html', {
-                'restaurant': restaurant,
-                'error_message': "You must include a restaurant name, address, and description",
-            })
+        else:
+            return render(request, 'restaurant_review/update_restaurant.html', {'form': form, 'restaurant': restaurant})
     else:
-        return render(request, 'restaurant_review/update_restaurant.html', {'restaurant': restaurant})
+        form = RestaurantForm(instance=restaurant)
+        return render(request, 'restaurant_review/update_restaurant.html', {'form': form, 'restaurant': restaurant})
