@@ -96,3 +96,10 @@ def update_restaurant(request, id):
     else:
         form = RestaurantForm(instance=restaurant)
         return render(request, 'restaurant_review/update_restaurant.html', {'form': form})
+    
+
+def delete_review(request, id):
+    review = get_object_or_404(Review, pk=id)
+    restaurant_id = review.restaurant.id
+    review.delete()
+    return HttpResponseRedirect(reverse('details', args=(restaurant_id,)))
