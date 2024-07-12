@@ -48,6 +48,7 @@
                     <th>User</th>
                     <th>Rating</th>
                     <th>Review</th>
+                    <th>Update</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -58,6 +59,7 @@
                         <td>{{ review.user_name }}</td>
                         <td>{{ review.rating }}</td>
                         <td>{{ review.review_text }}</td>
+                        <td></td><a href="{% url 'update_review' review.id %}" class="btn btn-warning">Update</a></td>
                         <td><a href="{% url 'delete_review' review.id %}" class="btn btn-danger">Delete</a></td>
                     </tr>
                 {% endfor %}

@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.cache import cache_page
-from .forms import RestaurantForm
+from .forms import RestaurantForm, ReviewForm  # Import the ReviewForm
 from django.views.decorators.http import require_http_methods
 
 
@@ -103,3 +103,20 @@ def delete_review(request, id):
     restaurant_id = review.restaurant.id
     review.delete()
     return HttpResponseRedirect(reverse('details', args=(restaurant_id,)))
+
+
+@csrf_exempt
+@require_http_methods(["GET", "POST"])
+def update_review(request, id):
+    review = get_object_or_404(Review, pk=id)
+    restaurant = review.restaurant
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('details', args=(restaurant.id,)))
+        else:
+            return render(request, 'restaurant_review/update_review.html', {'form': form, 'review': review})
+    else:
+        form = ReviewForm(instance=review)
+        return render(request, 'restaurant_review/update_review.html', {'form': form, 'review': review})
