@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.cache import cache_page
 from .forms import RestaurantForm
+from django.views.decorators.http import require_http_methods
 
 
 from restaurant_review.models import Restaurant, Review
@@ -18,7 +19,7 @@ def index(request):
     lastViewedRestaurant = request.session.get("lastViewedRestaurant", False)
     return render(request, 'restaurant_review/index.html', {'LastViewedRestaurant': lastViewedRestaurant, 'restaurants': restaurants})
 
-@cache_page(60)
+
 def details(request, id):
     print('Request for restaurant details page received')
     restaurant = get_object_or_404(Restaurant, pk=id)
@@ -82,6 +83,7 @@ def delete_restaurant(request, id):
 
 
 @csrf_exempt
+@require_http_methods(["GET", "POST"])
 def update_restaurant(request, id):
     restaurant = get_object_or_404(Restaurant, pk=id)
     if request.method == 'POST':
@@ -90,7 +92,7 @@ def update_restaurant(request, id):
             form.save()
             return HttpResponseRedirect(reverse('details', args=(restaurant.id,)))
         else:
-            return render(request, 'restaurant_review/update_restaurant.html', {'form': form, 'restaurant': restaurant})
+            return render(request, 'restaurant_review/update_restaurant.html', {'form': form})
     else:
         form = RestaurantForm(instance=restaurant)
-        return render(request, 'restaurant_review/update_restaurant.html', {'form': form, 'restaurant': restaurant})
+        return render(request, 'restaurant_review/update_restaurant.html', {'form': form})
