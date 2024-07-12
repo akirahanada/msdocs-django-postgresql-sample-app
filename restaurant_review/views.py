@@ -116,6 +116,7 @@ def update_review(request, id):
             form.save()
             return HttpResponseRedirect(reverse('details', args=(restaurant.id,)))
         else:
+            print('Form is not valid:', form.errors)
             return render(request, 'restaurant_review/update_review.html', {'form': form, 'review': review})
     else:
         form = ReviewForm(instance=review)
