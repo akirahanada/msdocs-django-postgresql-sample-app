@@ -77,3 +77,23 @@ def delete_restaurant(request, id):
     restaurant = get_object_or_404(Restaurant, pk=id)
     restaurant.delete()
     return HttpResponseRedirect(reverse('index'))
+
+
+@csrf_exempt
+def update_restaurant(request, id):
+    restaurant = get_object_or_404(Restaurant, pk=id)
+    if request.method == 'POST':
+        try:
+            restaurant.name = request.POST['restaurant_name']
+            restaurant.street_address = request.POST['street_address']
+            restaurant.description = request.POST['description']
+            restaurant.save()
+            return HttpResponseRedirect(reverse('details', args=(restaurant.id,)))
+        except KeyError:
+            # Redisplay the form
+            return render(request, 'restaurant_review/update_restaurant.html', {
+                'restaurant': restaurant,
+                'error_message': "You must include a restaurant name, address, and description",
+            })
+    else:
+        return render(request, 'restaurant_review/update_restaurant.html', {'restaurant': restaurant})
