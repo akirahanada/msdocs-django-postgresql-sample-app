@@ -32,7 +32,7 @@
             .overlay a {
                 padding: 8px;
                 text-decoration: none;
-                font-size: 36px;
+                font-size: 20px;  /* Adjust font size for smaller screens */
                 color: white;
                 display: block;
                 transition: 0.3s;
@@ -46,8 +46,8 @@
             .overlay .closebtn {
                 position: absolute;
                 top: 20px;
-                right: 45px;
-                font-size: 60px;
+                right: 35px;
+                font-size: 40px;  /* Adjust font size for smaller screens */
             }
 
             @media screen and (max-height: 450px) {
@@ -96,7 +96,6 @@
                             <li><a class="dropdown-item" href="{% url 'create_restaurant' %}">Add New Restaurant</a></li>
                             <li><a class="dropdown-item" href="{% url 'list_restaurants' %}">List Restaurants</a></li>
                             <li><a class="dropdown-item" href="{% url 'list_reviews' %}">List Reviews</a></li>
-                            <li><a class="dropdown-item" target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -130,4 +129,5 @@
     </script>      
 </body>
 </html>
+
 
