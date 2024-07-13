@@ -5,8 +5,7 @@
     {% block head %}
         <title>Django web app with PostgreSQL in Azure - {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <link rel="icon" href="{% static 'favicon.ico' %}">
         <style>
             /* Overlay styles for mobile and desktop */
@@ -78,7 +77,6 @@
                             <li><a class="dropdown-item" href="{% url 'create_restaurant' %}">Add New Restaurant</a></li>
                             <li><a class="dropdown-item" href="{% url 'list_restaurants' %}">List Restaurants</a></li>
                             <li><a class="dropdown-item" href="{% url 'list_reviews' %}">List Reviews</a></li>
-                            <li><a class="dropdown-item" target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -93,16 +91,13 @@
             <a href="{% url 'create_restaurant' %}">Add New Restaurant</a>
             <a href="{% url 'list_restaurants' %}">List Restaurants</a>
             <a href="{% url 'list_reviews' %}">List Reviews</a>
-            <a target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a>
         </div>
     </div>
 
     <main class="container" id="mainContent">
         {% block content %}{% endblock %}
     </main>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRfAEPzY2c5fQeVIF1T9K67V5VV6kaP4y05l4xM4T" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9wE5XWvK/gsv+XylzSHEIO4ANvIVgoV2wHbL" crossorigin="anonymous"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
     <script>
         function toggleNav() {
             const nav = document.getElementById("myNav");
@@ -121,7 +116,9 @@
             document.getElementById("mainContent").classList.remove("main-content-fade");
         }
     </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
+
 
 
