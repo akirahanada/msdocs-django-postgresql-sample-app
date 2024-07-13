@@ -108,3 +108,7 @@ def update_review(request, id):
 def list_restaurants(request):
     restaurants = Restaurant.objects.all()
     return render(request, 'restaurant_review/list_restaurants.html', {'restaurants': restaurants})
+
+def list_reviews(request):
+    reviews = Review.objects.all()
+    return render(request, 'restaurant_review/list_reviews.html', {'reviews': reviews})
