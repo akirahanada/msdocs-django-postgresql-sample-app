@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
         <link rel="icon" href="{% static 'favicon.ico' %}">
         <style>
-            /* Overlay styles for mobile */
+            /* Overlay styles for mobile and desktop */
             .overlay {
                 height: 100%;
                 width: 0;
@@ -32,7 +32,7 @@
             .overlay a {
                 padding: 8px;
                 text-decoration: none;
-                font-size: 20px;  /* Adjust font size for smaller screens */
+                font-size: 20px;  /* Adjust font size for all screens */
                 color: white;
                 display: block;
                 transition: 0.3s;
@@ -47,32 +47,7 @@
                 position: absolute;
                 top: 20px;
                 right: 35px;
-                font-size: 40px;  /* Adjust font size for smaller screens */
-            }
-
-            @media screen and (max-height: 450px) {
-                .overlay a {
-                    font-size: 20px;
-                }
-                .overlay .closebtn {
-                    font-size: 40px;
-                    top: 15px;
-                    right: 35px;
-                }
-            }
-
-            /* Hide overlay on larger screens */
-            @media (min-width: 768px) {
-                .overlay {
-                    display: none;
-                }
-            }
-
-            /* Show navbar on larger screens */
-            @media (min-width: 768px) {
-                .navbar-collapse {
-                    display: flex !important;
-                }
+                font-size: 40px;  /* Adjust font size for all screens */
             }
 
             /* Fade effect for main content when overlay is active */
@@ -93,7 +68,7 @@
             <button class="navbar-toggler" type="button" onclick="openNav()" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">                
+            <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mb-2 mb-md-0 ms-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="true">Menu</a>
@@ -116,11 +91,10 @@
             <a href="{% url 'create_restaurant' %}">Add New Restaurant</a>
             <a href="{% url 'list_restaurants' %}">List Restaurants</a>
             <a href="{% url 'list_reviews' %}">List Reviews</a>
-            <a target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a>
         </div>
     </div>
 
-    <main class="container" id="mainContent">    
+    <main class="container" id="mainContent">
         {% block content %}{% endblock %}
     </main>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
@@ -134,6 +108,6 @@
             document.getElementById("myNav").style.width = "0%";
             document.getElementById("mainContent").classList.remove("main-content-fade");
         }
-    </script>      
+    </script>
 </body>
 </html>
