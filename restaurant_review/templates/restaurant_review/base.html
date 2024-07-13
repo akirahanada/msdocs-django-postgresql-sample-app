@@ -78,6 +78,7 @@
                             <li><a class="dropdown-item" href="{% url 'create_restaurant' %}">Add New Restaurant</a></li>
                             <li><a class="dropdown-item" href="{% url 'list_restaurants' %}">List Restaurants</a></li>
                             <li><a class="dropdown-item" href="{% url 'list_reviews' %}">List Reviews</a></li>
+                            <li><a class="dropdown-item" target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -92,12 +93,15 @@
             <a href="{% url 'create_restaurant' %}">Add New Restaurant</a>
             <a href="{% url 'list_restaurants' %}">List Restaurants</a>
             <a href="{% url 'list_reviews' %}">List Reviews</a>
+            <a target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a>
         </div>
     </div>
 
     <main class="container" id="mainContent">
         {% block content %}{% endblock %}
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRfAEPzY2c5fQeVIF1T9K67V5VV6kaP4y05l4xM4T" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9wE5XWvK/gsv+XylzSHEIO4ANvIVgoV2wHbL" crossorigin="anonymous"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script>
         function toggleNav() {
@@ -119,4 +123,5 @@
     </script>
 </body>
 </html>
+
 
