@@ -1,0 +1,25 @@
+<!-- templates/restaurant_review/list_restaurants.html -->
+
+{% extends "restaurant_review/base.html" %}
+
+{% block content %}
+  <h1>Restaurant List</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Street Address</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for restaurant in restaurants %}
+        <tr>
+          <td>{{ restaurant.name }}</td>
+          <td>{{ restaurant.street_address }}</td>
+          <td>{{ restaurant.description }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

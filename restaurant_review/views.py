@@ -104,3 +104,7 @@ def update_review(request, id):
     else:
         form = ReviewForm(instance=review)
         return render(request, 'restaurant_review/update_review.html', {'form': form, 'review': review})
+    
+def list_restaurants(request):
+    restaurants = Restaurant.objects.all()
+    return render(request, 'restaurant_review/list_restaurants.html', {'restaurants': restaurants})
