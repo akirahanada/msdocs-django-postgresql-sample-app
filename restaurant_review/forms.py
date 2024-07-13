@@ -11,4 +11,4 @@ class RestaurantForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['user_name', 'rating', 'review_text']
+        fields = ['user_name', 'rating', 'review_text', 'review_date']
