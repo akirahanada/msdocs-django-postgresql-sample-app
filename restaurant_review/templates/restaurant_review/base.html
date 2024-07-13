@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
         <link rel="icon" href="{% static 'favicon.ico' %}">
         <style>
-            /* Overlay styles */
+            /* Overlay styles for mobile */
             .overlay {
                 height: 100%;
                 width: 0;
@@ -60,6 +60,20 @@
                     right: 35px;
                 }
             }
+
+            /* Hide overlay on larger screens */
+            @media (min-width: 768px) {
+                .overlay {
+                    display: none;
+                }
+            }
+
+            /* Show navbar on larger screens */
+            @media (min-width: 768px) {
+                .navbar-collapse {
+                    display: flex !important;
+                }
+            }
         </style>
     {% endblock %}
 </head>
@@ -73,6 +87,20 @@
             <button class="navbar-toggler" type="button" onclick="openNav()" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">                
+                <ul class="navbar-nav mb-2 mb-md-0 ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="true">Menu</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown07XL" data-bs-popper="none">
+                            <li><a class="dropdown-item" href="{% url 'index' %}">Home</a></li>
+                            <li><a class="dropdown-item" href="{% url 'create_restaurant' %}">Add New Restaurant</a></li>
+                            <li><a class="dropdown-item" href="{% url 'list_restaurants' %}">List Restaurants</a></li>
+                            <li><a class="dropdown-item" href="{% url 'list_reviews' %}">List Reviews</a></li>
+                            <li><a class="dropdown-item" target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -90,7 +118,7 @@
     <main class="container">    
         {% block content %}{% endblock %}
     </main>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>      
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script>
         function openNav() {
             document.getElementById("myNav").style.width = "100%";
@@ -99,6 +127,7 @@
         function closeNav() {
             document.getElementById("myNav").style.width = "0%";
         }
-    </script>
+    </script>      
 </body>
 </html>
+
