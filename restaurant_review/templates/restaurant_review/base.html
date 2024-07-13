@@ -6,38 +6,99 @@
         <title>Django web app with PostgreSQL in Azure - {% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
-        <link rel="icon"href="{% static 'favicon.ico' %}">
+        <link rel="icon" href="{% static 'favicon.ico' %}">
+        <style>
+            /* Overlay styles */
+            .overlay {
+                height: 100%;
+                width: 0;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 0, 0.9);
+                overflow-x: hidden;
+                transition: 0.5s;
+            }
+
+            .overlay-content {
+                position: relative;
+                top: 25%;
+                width: 100%;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            .overlay a {
+                padding: 8px;
+                text-decoration: none;
+                font-size: 36px;
+                color: white;
+                display: block;
+                transition: 0.3s;
+            }
+
+            .overlay a:hover,
+            .overlay a:focus {
+                color: #f1f1f1;
+            }
+
+            .overlay .closebtn {
+                position: absolute;
+                top: 20px;
+                right: 45px;
+                font-size: 60px;
+            }
+
+            @media screen and (max-height: 450px) {
+                .overlay a {
+                    font-size: 20px;
+                }
+                .overlay .closebtn {
+                    font-size: 40px;
+                    top: 15px;
+                    right: 35px;
+                }
+            }
+        </style>
     {% endblock %}
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
         <div class="container">
-          <a class="navbar-brand" href="/">
-            <img src="{% static 'images/restaurant-svgrepo-com.svg' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
-            Akira Restaurant Review
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">                
-            <ul class="navbar-nav mb-2 mb-md-0 ms-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="true">Menu</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown07XL" data-bs-popper="none">
-                        <li><a class="dropdown-item" target="_blank" href="https://msdocs-python-postgres-akh.azurewebsites.net/">Home</a></li>
-                        <li><a class="dropdown-item" target="_blank" href="https://msdocs-python-postgres-akh.azurewebsites.net/create">Add New Restaurant</a></li>
-                        <li><a class="dropdown-item" target="_blank" href="{% url 'list_restaurants' %}">List Restaurants</a></li>
-                        <li><a class="dropdown-item" target="_blank" href="{% url 'list_reviews' %}">List Reviews</a></li>
-                    </ul>
-                </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'images/restaurant-svgrepo-com.svg' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Akira Restaurant Review
+            </a>
+            <button class="navbar-toggler" type="button" onclick="openNav()" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
-      </nav>
+    </nav>
 
-      <main class="container">    
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'create_restaurant' %}">Add New Restaurant</a>
+            <a href="{% url 'list_restaurants' %}">List Restaurants</a>
+            <a href="{% url 'list_reviews' %}">List Reviews</a>
+            <a target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a>
+        </div>
+    </div>
+
+    <main class="container">    
         {% block content %}{% endblock %}
-      </main>
-      <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>      
+    </main>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>      
+    <script>
+        function openNav() {
+            document.getElementById("myNav").style.width = "100%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+    </script>
 </body>
 </html>
