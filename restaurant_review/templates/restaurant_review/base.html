@@ -6,6 +6,7 @@
         <title>Django web app with PostgreSQL in Azure - {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
         <link rel="icon" href="{% static 'favicon.ico' %}">
         <style>
             /* Overlay styles for mobile and desktop */
@@ -63,6 +64,12 @@
                     left: auto;
                 }
             }
+
+            /* Style for active navbar-toggler */
+            .navbar-toggler.active {
+                outline: none;
+                box-shadow: none;
+            }
         </style>
     {% endblock %}
 </head>
@@ -85,7 +92,6 @@
                             <li><a class="dropdown-item" href="{% url 'create_restaurant' %}">Add New Restaurant</a></li>
                             <li><a class="dropdown-item" href="{% url 'list_restaurants' %}">List Restaurants</a></li>
                             <li><a class="dropdown-item" href="{% url 'list_reviews' %}">List Reviews</a></li>
-                            <li><a class="dropdown-item" target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -116,9 +122,11 @@
             if (nav.style.width === "100%") {
                 nav.style.width = "0%";
                 mainContent.classList.remove("main-content-fade");
+                toggleButton.classList.remove("active");
             } else {
                 nav.style.width = "100%";
                 mainContent.classList.add("main-content-fade");
+                toggleButton.classList.add("active");
             }
 
             // Remove focus from the button after click
@@ -126,8 +134,10 @@
         }
 
         function closeNav() {
+            const toggleButton = document.querySelector('.navbar-toggler');
             document.getElementById("myNav").style.width = "0%";
             document.getElementById("mainContent").classList.remove("main-content-fade");
+            toggleButton.classList.remove("active");
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
