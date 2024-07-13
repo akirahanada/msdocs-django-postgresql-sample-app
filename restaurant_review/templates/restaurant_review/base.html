@@ -65,7 +65,7 @@
                 <img src="{% static 'images/restaurant-svgrepo-com.svg' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
                 Akira Restaurant Review
             </a>
-            <button class="navbar-toggler" type="button" onclick="openNav()" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" onclick="toggleNav()" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -77,6 +77,7 @@
                             <li><a class="dropdown-item" href="{% url 'create_restaurant' %}">Add New Restaurant</a></li>
                             <li><a class="dropdown-item" href="{% url 'list_restaurants' %}">List Restaurants</a></li>
                             <li><a class="dropdown-item" href="{% url 'list_reviews' %}">List Reviews</a></li>
+                            <li><a class="dropdown-item" target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -91,6 +92,7 @@
             <a href="{% url 'create_restaurant' %}">Add New Restaurant</a>
             <a href="{% url 'list_restaurants' %}">List Restaurants</a>
             <a href="{% url 'list_reviews' %}">List Reviews</a>
+            <a target="_blank" href="https://docs.microsoft.com/azure/developer/python">Python on Azure Developer Center</a>
         </div>
     </div>
 
@@ -99,9 +101,16 @@
     </main>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script>
-        function openNav() {
-            document.getElementById("myNav").style.width = "100%";
-            document.getElementById("mainContent").classList.add("main-content-fade");
+        function toggleNav() {
+            const nav = document.getElementById("myNav");
+            const mainContent = document.getElementById("mainContent");
+            if (nav.style.width === "100%") {
+                nav.style.width = "0%";
+                mainContent.classList.remove("main-content-fade");
+            } else {
+                nav.style.width = "100%";
+                mainContent.classList.add("main-content-fade");
+            }
         }
 
         function closeNav() {
