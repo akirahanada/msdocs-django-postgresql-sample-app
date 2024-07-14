@@ -14,6 +14,9 @@ class ReviewForm(forms.ModelForm):
 
     rating = forms.ChoiceField(choices=RATING_CHOICES, widget=forms.RadioSelect)
 
+    class Meta:
+        model = Review
+        fields = ['user_name', 'rating', 'review_text', 'review_date']
 
 
 class RestaurantForm(forms.ModelForm):
@@ -21,7 +24,3 @@ class RestaurantForm(forms.ModelForm):
         model = Restaurant
         fields = ['name', 'street_address', 'description']
 
-class ReviewForm(forms.ModelForm):
-    class Meta:
-        model = Review
-        fields = ['user_name', 'rating', 'review_text', 'review_date']
