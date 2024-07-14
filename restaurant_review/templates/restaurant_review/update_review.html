@@ -6,7 +6,23 @@
   <h1>Update Review</h1>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="mb-3">
+      <label for="{{ form.user_name.id_for_label }}" class="form-label">User name:</label>
+      {{ form.user_name }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.rating.id_for_label }}" class="form-label">Rating:</label>
+      {{ form.rating }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.review_text.id_for_label }}" class="form-label">Review text:</label>
+      {{ form.review_text }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.review_date.id_for_label }}" class="form-label">Review date:</label>
+      {{ form.review_date }}
+    </div>
     <button type="submit" class="btn btn-primary">Save changes</button>
   </form>
 {% endblock %}
+

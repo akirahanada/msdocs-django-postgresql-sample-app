@@ -2,11 +2,12 @@
 
 from django.db.models import Avg, Count
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.cache import cache_page
+from .models import Review
 from .forms import RestaurantForm, ReviewForm  # Import the ReviewForm
 from django.db.models import Avg
 from django.views.decorators.http import require_http_methods
@@ -94,18 +95,14 @@ def delete_review(request, id):
 @require_http_methods(["GET", "POST"])
 def update_review(request, id):
     review = get_object_or_404(Review, pk=id)
-    restaurant = review.restaurant
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('details', args=(restaurant.id,)))
-        else:
-            print('Form is not valid:', form.errors)
-            return render(request, 'restaurant_review/update_review.html', {'form': form, 'review': review})
+            return redirect('details', id=review.restaurant.id)
     else:
         form = ReviewForm(instance=review)
-        return render(request, 'restaurant_review/update_review.html', {'form': form, 'review': review})
+    return render(request, 'restaurant_review/update_review.html', {'form': form})
     
 def list_restaurants(request):
     restaurants = Restaurant.objects.all()
