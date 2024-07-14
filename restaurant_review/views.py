@@ -8,6 +8,7 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.cache import cache_page
 from .forms import RestaurantForm, ReviewForm  # Import the ReviewForm
+from django.db.models import Avg
 from django.views.decorators.http import require_http_methods
 
 from restaurant_review.models import Restaurant, Review
@@ -21,8 +22,9 @@ def index(request):
 def details(request, id):
     print('Request for restaurant details page received')
     restaurant = get_object_or_404(Restaurant, pk=id)
+    average_rating = restaurant.review_set.aggregate(Avg('rating'))['rating__avg']
     request.session["lastViewedRestaurant"] = restaurant.name
-    return render(request, 'restaurant_review/details.html', {'restaurant': restaurant})
+    return render(request, 'restaurant_review/details.html', {'restaurant': restaurant, 'average_rating': average_rating,})
 
 def create_restaurant(request):
     print('Request for add restaurant page received')
