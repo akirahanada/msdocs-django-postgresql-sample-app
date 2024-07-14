@@ -3,77 +3,73 @@
 <html lang="en">
 <head>
     {% block head %}
-        <title>Django web app with PostgreSQL in Azure - {% block title %}{% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
-        <link rel="icon" href="{% static 'favicon.ico' %}">
-        <style>
-            /* Overlay styles for mobile and desktop */
-            .overlay {
-                height: 100%;
-                width: 0;
-                position: fixed;
-                z-index: 1;
-                top: 0;
-                left: 0;
-                background-color: rgba(0, 0, 0, 0.9);
-                overflow-x: hidden;
-                transition: 0.5s;
-            }
+    <title>Django web app with PostgreSQL in Azure - {% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <style>
+        /* Overlay styles for mobile and desktop */
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
 
-            .overlay-content {
-                position: relative;
-                top: 25%;
-                width: 100%;
-                text-align: center;
-                margin-top: 30px;
-            }
+        .overlay-content {
+            position: relative;
+            top: 25%;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
 
-            .overlay a {
-                padding: 8px;
-                text-decoration: none;
-                font-size: 20px;  /* Adjust font size for all screens */
-                color: white;
-                display: block;
-                transition: 0.3s;
-            }
+        .overlay a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
 
-            .overlay a:hover,
-            .overlay a:focus {
-                color: #f1f1f1;
-            }
+        .overlay a:hover,
+        .overlay a:focus {
+            color: #f1f1f1;
+        }
 
-            .overlay .closebtn {
-                position: absolute;
-                top: 50px; /* Adjusted position */
-                right: 35px;
-                font-size: 40px;  /* Adjust font size for all screens */
-            }
+        .overlay .closebtn {
+            position: absolute;
+            top: 50px;
+            right: 35px;
+            font-size: 40px;
+        }
 
-            /* Fade effect for main content when overlay is active */
-            .main-content-fade {
-                transition: opacity 0.5s;
-                opacity: 0.3;
-            }
+        .main-content-fade {
+            transition: opacity 0.5s;
+            opacity: 0.3;
+        }
 
-            /* Ensure dropdown menu doesn't get cut off */
-            @media (min-width: 768px) {
-                .dropdown-menu {
-                    right: 0;
-                    left: auto;
-                }
+        /* Ensure dropdown menu doesn't get cut off */
+        @media (min-width: 768px) {
+            .dropdown-menu {
+                right: 0;
+                left: auto;
             }
+        }
 
-            /* Style for active navbar-toggler */
-            .navbar-toggler.active {
-                border-width: 3px;  /* Thicker border */
-            }
-
-            .navbar-toggler {
-                border-width: 1px;  /* Default thin border */
-            }
-        </style>
+        /* Style for active navbar-toggler */
+        .navbar-toggler.active {
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
     {% endblock %}
 </head>
 <body>
@@ -88,14 +84,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mb-2 mb-md-0 ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="true">Menu</a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown07XL" data-bs-popper="none">
-                            <li><a class="dropdown-item" href="{% url 'index' %}">Home</a></li>
-                            <li><a class="dropdown-item" href="{% url 'create_restaurant' %}">Add New Restaurant</a></li>
-                            <li><a class="dropdown-item" href="{% url 'list_restaurants' %}">List Restaurants</a></li>
-                            <li><a class="dropdown-item" href="{% url 'list_reviews' %}">List Reviews</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" onclick="toggleNav()">Menu</a>
                     </li>
                 </ul>
             </div>
@@ -146,3 +136,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
+
