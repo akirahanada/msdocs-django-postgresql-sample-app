@@ -52,7 +52,7 @@
         </div>
         <div class="row">
             <div class="col-md-2 col-4 fw-bold">Rating:</div>
-            <div class="col-md-10 col-8"></div>                
+            <div class="col-md-10 col-8">{{ average_rating|default:"No ratings yet" }}</div>                
         </div>
 
         <h4 class="mt-5">Reviews</h4>
@@ -146,5 +146,6 @@
         </div>
     </div>
 {% endblock %}
+
 
 
