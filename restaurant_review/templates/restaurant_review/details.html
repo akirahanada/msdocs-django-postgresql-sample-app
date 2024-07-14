@@ -27,13 +27,20 @@
     .btn {
         white-space: nowrap;
     }
+    .btn-sm {
+        font-size: 0.8rem;
+    }
+    .table td,
+    .table th {
+        vertical-align: middle;
+    }
   </style>
 {% endblock %}
 {% block content %}
     <h1>{{ restaurant.name }}</h1>
     <!-- Other content... -->
-    <a href="{% url 'update_restaurant' restaurant.id %}" class="btn btn-warning">Update</a>
-    <a href="{% url 'delete_restaurant' restaurant.id %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'update_restaurant' restaurant.id %}" class="btn btn-warning btn-sm">Update</a>
+    <a href="{% url 'delete_restaurant' restaurant.id %}" class="btn btn-danger btn-sm">Delete</a>
 
     <div class="row">
         <div class="col-md-2 col-4 fw-bold">Street address:</div>
@@ -51,7 +58,7 @@
     <h4 class="mt-5">Reviews</h4>
 
     <p>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addReviewModal">
+        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addReviewModal">
             Add new review
         </button>
     </p>
@@ -76,8 +83,8 @@
                             <td>{{ review.user_name }}</td>
                             <td>{{ review.rating }}</td>
                             <td>{{ review.review_text }}</td>
-                            <td><a href="{% url 'update_review' review.id %}" class="btn btn-warning">Update</a></td>
-                            <td><a href="{% url 'delete_review' review.id %}" class="btn btn-danger">Delete</a></td>
+                            <td><a href="{% url 'update_review' review.id %}" class="btn btn-warning btn-sm">Update</a></td>
+                            <td><a href="{% url 'delete_review' review.id %}" class="btn btn-danger btn-sm">Delete</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -138,5 +145,4 @@
       </div>
     </div>
 {% endblock %}
-
 
