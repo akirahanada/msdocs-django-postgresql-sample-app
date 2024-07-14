@@ -2,11 +2,14 @@
 
 {% extends "restaurant_review/base.html" %}
 {% block content %}
-  <h1>Update Restaurant</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save changes</button>
-  </form>
+  <div class="container mt-5">
+    <h1>Update Restaurant</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+  </div>
 {% endblock %}
+
 
