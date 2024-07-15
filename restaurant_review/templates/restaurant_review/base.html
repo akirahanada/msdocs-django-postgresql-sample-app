@@ -9,10 +9,7 @@
         <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
         <link rel="icon" href="{% static 'favicon.ico' %}">
         <style>
-            body {
-                min-height: 75rem;
-                padding-top: 4.5rem; /* Adjust based on your navbar height */
-            }
+            /* Overlay styles for mobile and desktop */
             .overlay {
                 height: 100%;
                 width: 0;
@@ -36,7 +33,7 @@
             .overlay a {
                 padding: 8px;
                 text-decoration: none;
-                font-size: 20px;
+                font-size: 20px;  /* Adjust font size for all screens */
                 color: white;
                 display: block;
                 transition: 0.3s;
@@ -49,24 +46,42 @@
 
             .overlay .closebtn {
                 position: absolute;
-                top: 40px; /* Adjust based on your preference */
+                top: 20px;
                 right: 35px;
-                font-size: 40px;
+                font-size: 40px;  /* Adjust font size for all screens */
             }
 
+            /* Fade effect for main content when overlay is active */
             .main-content-fade {
                 transition: opacity 0.5s;
                 opacity: 0.3;
             }
 
-            .dropdown-menu {
-                right: 0;
-                left: auto;
+            /* Ensure dropdown menu doesn't get cut off */
+            @media (min-width: 768px) {
+                .dropdown-menu {
+                    right: 0;
+                    left: auto;
+                }
             }
 
+            /* Style for active navbar-toggler */
             .navbar-toggler.active {
                 outline: none;
                 box-shadow: none;
+            }
+
+            /* Fix navbar at the top */
+            .navbar {
+                position: fixed;
+                width: 100%;
+                z-index: 1030; /* higher than other elements */
+                top: 0;
+                left: 0;
+            }
+
+            body {
+                padding-top: 56px; /* height of the navbar */
             }
         </style>
     {% endblock %}
@@ -127,6 +142,7 @@
                 toggleButton.classList.add("active");
             }
 
+            // Remove focus from the button after click
             toggleButton.blur();
         }
 
